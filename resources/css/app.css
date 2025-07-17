@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Base */
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+}
+
+/* Layout */
+.container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+.header, .footer { background: #fff; padding: 1rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+/* Navbar */
+.navbar { display: flex; align-items: center; justify-content: space-between; }
+.navbar a { color: #333; text-decoration: none; padding: 0.5rem 1rem; }
+.navbar a:hover { color: #17b978; }
+
+/* Product Grid */
+.product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; }
+.product-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .2s;
+}
+.product-card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+.product-card img { width: 100%; height: 150px; object-fit: cover; }
+.product-info { padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; }
+.product-info h2 { margin: 0.5rem 0; font-size: 1.1rem; flex-grow: 1; }
+.product-info .price { font-size: 1.2rem; font-weight: bold; color: #17b978; }
+.view-details { margin-top: auto; background: #17b978; color: #fff; text-align: center; padding: 0.5rem; border: none; border-radius: 4px; cursor: pointer; }
+.view-details:hover { background: #159868; }
+
+/* Product Detail */
+.product-detail { display: flex; gap: 2rem; padding: 2rem 0; }
+.product-detail img { max-width: 400px; width: 100%; object-fit: contain; border-radius: 6px; }
+.detail-info { background: #fff; padding: 1rem; border-radius: 6px; flex-grow: 1; }
+.detail-info h1 { margin-top: 0; }
+.quantity-input { width: 60px; padding: 0.3rem; margin-right: 1rem; }
+
+/* Cart / Checkout */
+.cart-item { display: flex; justify-content: space-between; background: #fff; padding: 1rem; border-radius: 6px; margin-bottom: 1rem; }
+.checkout-form input, .checkout-form button { width: 100%; padding: 0.75rem; margin: 0.5rem 0; font-size: 1rem; }
+.checkout-form button { background: #17b978; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+.checkout-form button:hover { background: #159868; }
+
+
