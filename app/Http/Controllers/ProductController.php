@@ -3,26 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
+    protected $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Create a sample array of products for demonstration
-        // add a random image_url to each product
-        $products = collect(range(1, 10))->map(function ($id) {
-            return (object) [
-                'id' => $id,
-                'name' => 'Product ' . $id,
-                'description' => 'Description for Product ' . $id,
-                'price' => 10.00 * $id,
-                'image_url' => 'https://picsum.photos/200/300',
-            ];
-        });
-        
+        $products = $this->productService->getProducts();   
         return view('products.index', compact('products'));
     }
 
@@ -47,8 +43,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        // For demonstration, we'll create a sample product
-        $product = (object) ['id' => $id, 'name' => 'Product ' . $id, 'description' => 'Description for Product ' . $id, 'price' => 10.00 * $id, 'image_url' => 'https://picsum.photos/50/50'];
+        $product = $this->productService->getProductById($id);
         return view('products.show', compact('product'));
     }
 

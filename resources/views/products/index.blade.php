@@ -4,7 +4,7 @@
 <h1>Products</h1>
 <div class="product-list">
     @foreach($products as $product)
-    @include('components.product-card', ['product' => $product])
+    @include('components.product-card', ['product' => $product, 'mainImage' => $product->mainImage])
     @endforeach
 </div>
 @endsection
