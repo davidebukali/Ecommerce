@@ -14,6 +14,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Repeater;
+
+
+use Filament\Forms\Components\FileUpload; // Add this line
+use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\ImageColumn;  // Add this line
+use Filament\Tables\Columns\IconColumn;   // Add this line
 
 
 class ProductResource extends Resource
@@ -37,6 +44,22 @@ class ProductResource extends Resource
                     ->required()
                     ->numeric()
                     ->inputMode('decimal'),
+            ])->columns(1),
+
+            Fieldset::make('Add Image') // You can name your fieldset anything you like
+            ->schema([
+                Repeater::make('Product Images')
+                ->relationship('images')
+                ->schema([
+                    FileUpload::make('image_path')
+                    ->image()
+                    ->directory('products')
+                    ->visibility('public')
+                    ->required(),
+
+                    Toggle::make('is_main')
+                    ->label('Set Main Image'),
+                ]),
             ])->columns(1),
         ]);
     }
@@ -65,7 +88,6 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 
