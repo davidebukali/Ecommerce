@@ -66,11 +66,11 @@
             </div>
             <div class="summary-row">
                 <span>Delivery Fee:</span>
-                <span>${{ number_format($deliveryFee, 2) }}</span>
+                <span>$500</span>
             </div>
             <div class="summary-row total">
                 <span>Total:</span>
-                <span>${{ number_format($total, 2) }}</span>
+                <span>${{ number_format(($subtotal + 500), 2) }}</span>
             </div>
         </div>
 

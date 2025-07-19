@@ -49,6 +49,7 @@
                 <input type="text" name="quantity" value="1" min="1" class="quantity-input" readonly>
                 <button type="button" class="quantity-button increase" data-action="increase">+</button>
             </div>
+            <input type="hidden" name="price" value="{{ $product->price }}">
             <button type="submit" class="add-to-cart-button">Add to Cart</button>
         </form>
 
