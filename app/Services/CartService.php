@@ -51,4 +51,14 @@ class CartService
             $cartItem->save();
         }
     }
+
+    public function removeCartItem($productId)
+    {
+        $cart = $this->getOrCreateCart();
+        $cartItem = $cart->items()->where('product_id', $productId)->first();
+
+        if ($cartItem) {
+            $cartItem->delete();
+        }
+    }
 }
