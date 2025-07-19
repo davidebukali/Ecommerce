@@ -12,10 +12,12 @@
 
 /* Base */
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #f6f6f6; /* Light gray background */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 /* Layout */
@@ -274,17 +276,6 @@ body {
 
 .product-meta a:hover {
     text-decoration: underline;
-}
-
-/* Cart / Checkout */
-/* General Body & Container Styling */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    background-color: #f6f6f6; /* Light gray background */
-    color: #333;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
 }
 
 .cart-container {
@@ -660,4 +651,69 @@ body {
     }
 }
 
+/* Basic Alert Styles */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 8px; /* Slightly more rounded corners */
+    font-size: 1rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon (if added) and text */
+}
 
+/* Success Alert */
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Danger/Error Alert */
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* Warning Alert */
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+/* Info Alert */
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+/* Optional: Add a close button (requires more JS) */
+/*
+.alert .close-button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+}
+.alert .close-button:hover {
+    opacity: 1;
+}
+*/
+
+/* Ensure your container has appropriate padding */
+.container {
+    max-width: 1200px; /* Or whatever your max content width is */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
