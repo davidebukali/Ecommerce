@@ -36,12 +36,12 @@
                     <form action="{{ route('cart.update', $item->product->id) }}" method="POST"
                         class="quantity-update-form">
                         @csrf
-                        @method('PATCH')
-                        <button type="button" class="quantity-button decrease" data-action="decrease"
+                        <button type="submit" class="quantity-button decrease" data-action="decrease"
                             data-product-id="{{ $item->product->id }}">-</button>
                         <input type="text" name="quantity" value="{{ $item->quantity }}" min="1" class="quantity-input"
                             readonly>
-                        <button type="button" class="quantity-button increase" data-action="increase"
+                        <input type="hidden" name="product_id" value="{{ $item->product->id }}">
+                        <button type="submit" class="quantity-button increase" data-action="increase"
                             data-product-id="{{ $item->product->id }}">+</button>
                     </form>
                     <form action="{{ route('cart.remove', $item->product->id) }}" method="POST"

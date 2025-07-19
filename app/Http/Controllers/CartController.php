@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Services\CartService;
-use Livewire\Livewire;
 
 class CartController extends Controller
 {
@@ -38,14 +37,10 @@ class CartController extends Controller
     {
         $quantity = $request->input('quantity', 1);
         $price = $request->input('price', 1);
-        $sessionId = session()->getId();
 
-        $this->cartService->addCartItem($price, $quantity, $productId, $sessionId);
-
-        // Dispatch the event that the Livewire CartCounter component is listening for
-        Livewire::dispatch('cartUpdated');
+        $this->cartService->addCartItem($price, $quantity, $productId);
         
-        return redirect()->back()->with('success', 'Product added to cart!');
+        return redirect()->back()->with('success', 'Product added to cart!')->with('dispatch', 'cart-updated');;
     }
 
     /**
@@ -67,9 +62,15 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cart $cart)
+    public function updateCart(Request $request, Cart $cart)
     {
-        //
+        $quantity = $request->input('quantity', 1);
+        $product_id = $request->input('product_id', 1);
+        $sessionId = session()->getId();
+
+        $this->cartService->updateCartItem($product_id, $quantity);
+        
+        return redirect()->back()->with('success', 'Cart updated!')->with('dispatch', 'cart-updated');
     }
 
     /**
