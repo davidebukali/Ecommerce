@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('session_id')->nullable(); // for guests
-            $table->string('status')->default('active'); // or use enum
+            $table->string('status')->default('active'); // active, completed, abandoned
             $table->timestamps();
         });
     }
