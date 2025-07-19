@@ -4,7 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Cart;
-use Illuminate\Support\Facades\Session; 
+use Illuminate\Support\Facades\Session;
+use Livewire\Attributes\On;
 
 class CartCounter extends Component
 {
@@ -19,6 +20,7 @@ class CartCounter extends Component
         $this->updateCartCount();
     }
  
+    #[On('cart-updated')] // Listen for the 'cart-updated' event from the browser
     public function updateCartCount()
     {
         $cart = $this->getCart();
