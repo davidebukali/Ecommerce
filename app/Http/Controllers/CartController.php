@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Services\CartService;
+use Livewire\Livewire;
 
 class CartController extends Controller
 {
@@ -40,6 +41,9 @@ class CartController extends Controller
         $sessionId = session()->getId();
 
         $this->cartService->addCartItem($price, $quantity, $productId, $sessionId);
+
+        // Dispatch the event that the Livewire CartCounter component is listening for
+        Livewire::dispatch('cartUpdated');
         
         return redirect()->back()->with('success', 'Product added to cart!');
     }
