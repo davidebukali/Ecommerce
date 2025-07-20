@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\Events\Login;
+use App\Listeners\MergeGuestCartOnLogin;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,4 +26,15 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    /**
+     * The event listener mappings for the application.
+     *
+     * @var array
+     */
+    protected $listen = [
+        Login::class => [
+            MergeGuestCartOnLogin::class,
+        ],
+    ];
 }
