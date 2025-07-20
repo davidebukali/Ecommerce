@@ -20,8 +20,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $sessionId = session()->getId();
-        $cart = $this->cartService->getOrCreateCart($sessionId);
+        $cart = $this->cartService->getOrCreateCart();
         $cartItems = $cart->items()->with('product')->get();
         // sum the total price of all items in the cart
         $subtotal = $cartItems->sum(function ($item) {
