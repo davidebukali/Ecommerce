@@ -39,7 +39,7 @@ class CartCounter extends Component
                        ->where('status', 'active')
                        ->first();
         } else {
-            $sessionId = Session::getId(); // Use Session facade for getting ID
+            $sessionId = session('cart_id');
             return Cart::where('session_id', $sessionId)
                        ->where('status', 'active')
                        ->first();

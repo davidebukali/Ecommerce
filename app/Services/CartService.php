@@ -4,12 +4,14 @@ namespace App\Services;
 
 use App\Models\Cart;
 use App\Models\CartItems;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class CartService
 {
     public function getOrCreateCart()
     {
-        $sessionId = session()->getId();
+        $sessionId = session('cart_id');
         // Check if the user is authenticated
         if (auth()->check()) {
             $cart = Cart::firstOrCreate(
@@ -17,6 +19,15 @@ class CartService
                 ['status' => 'active']
             );
         } else {
+            //check if session is null
+            Log::info('Session ID: ' . $sessionId);
+            if ($sessionId == null) {
+                // Generate a new session ID if it doesn't exist
+                $sessionId = (string) Str::uuid();
+                session(['cart_id' => $sessionId]);
+                $sessionId = session('cart_id');
+            }
+
             // For guests, use the session ID to identify the cart
             $cart = Cart::firstOrCreate(
                 ['session_id' => $sessionId, 'status' => 'active'],
@@ -31,6 +42,8 @@ class CartService
     {
         // Get or create the cart
         $cart = $this->getOrCreateCart();
+
+        Log::info('Found a cart to add items: ' . $cart);
 
         // Add or update the product in the cart
         $cartItem = $cart->items()->firstOrNew(['product_id' => $productId]);
