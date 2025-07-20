@@ -6,7 +6,7 @@
 
     <!-- Right: Cart and User -->
     <div class="flex">
-        <a href="{{ route('cart.index') }}" class="relative text-gray-700 hover:text-green-600">
+        <a href="{{ route('cart.index') }}" class="relative text-gray-700 hover:text-green-600 mr-3">
             🛒
             <span
                 class="absolute -top-2 -right-2 bg-green-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">

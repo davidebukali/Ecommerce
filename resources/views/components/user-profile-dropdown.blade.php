@@ -1,4 +1,4 @@
-<div x-data="{ open: false }" @click.away="open = false" class="relative">
+<div x-data="{ open: false }" @click.away="open = false" class="relative mr-3">
     <button @click="open = !open" class="flex items-center space-x-2 focus:outline-none">
         {{-- User Profile Photo --}}
         <img src="{{ $user->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&color=FFFFFF&background=1A73E8' }}"
