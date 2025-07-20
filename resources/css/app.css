@@ -709,11 +709,196 @@ body {
 }
 */
 
-/* Ensure your container has appropriate padding */
-.container {
-    max-width: 1200px; /* Or whatever your max content width is */
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+/* --- Authentication Pages Specific Styles --- */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    padding: 20px;
+    background-color: #f6f6f6; /* Match body background */
+}
+
+.auth-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px; /* Max width for the card */
+    text-align: center; /* Center titles and subtitles */
+}
+
+.auth-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #222;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.auth-form {
+    text-align: left; /* Align form elements to the left */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    box-sizing: border-box; /* Include padding/border in element's total width/height */
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: #1a73e8; /* Instacart-like blue focus */
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+.form-input.is-invalid {
+    border-color: #dc3545; /* Red border for invalid input */
+}
+
+.input-error-message {
+    color: #dc3545; /* Red text for error messages */
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.form-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-appearance: none; /* Hide default checkbox */
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    outline: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.form-checkbox:checked {
+    background-color: #4CAF50; /* Instacart green when checked */
+    border-color: #4CAF50;
+}
+
+.form-checkbox:checked::before {
+    content: '\2713'; /* Checkmark character */
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: white;
+}
+
+.form-checkbox-label {
+    font-size: 0.95rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center; /* Center items in column */
+    margin-top: 20px;
+}
+
+.auth-submit-button {
+    width: 100%; /* Full width button */
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: #4CAF50; /* Instacart Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.auth-submit-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.auth-submit-button:active {
+    transform: translateY(0);
+}
+
+.auth-link {
+    font-size: 0.95rem;
+    color: #1a73e8; /* Instacart-like blue for links */
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+.auth-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 0.95rem;
+    color: #777;
+}
+
+.auth-footer p {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+    .auth-card {
+        padding: 30px 20px; /* Reduce padding on smaller screens */
+    }
+
+    .auth-title {
+        font-size: 1.8rem;
+    }
+
+    .auth-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .auth-submit-button {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
 }
