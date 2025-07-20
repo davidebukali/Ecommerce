@@ -709,15 +709,6 @@ body {
 }
 */
 
-/* Ensure your container has appropriate padding */
-.container {
-    max-width: 1200px; /* Or whatever your max content width is */
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
 /* --- Authentication Pages Specific Styles --- */
 .auth-container {
     display: flex;
