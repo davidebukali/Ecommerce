@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Log;
+
 
 Route::get('/', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
@@ -22,5 +25,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     // Order Details Page
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.details');
+});
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+})->name('google.auth');
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('google')->user();
+
+    Log::info('Google User Data:', [
+        'id' => $user->getId(),
+        'name' => $user->getName(),
+        'email' => $user->getEmail(),
+    ]);
 });
 
