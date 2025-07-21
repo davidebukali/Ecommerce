@@ -11,6 +11,8 @@ This is an ecommerce clone of the popular shopping store. It's built with Larave
 - Livewire framework components to update cart item counts
 - Real time event broadcasting for order status updates
 - PHPUnit for feature tests
+- Laravel Fortify authentication with socialite (Google login)
+- Laravel Sanctum APIs
 
 ## Backlog
 
