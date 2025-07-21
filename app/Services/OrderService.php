@@ -28,6 +28,6 @@ class OrderService
         $cart->status = 'completed'; // Mark the cart as completed/converted
         $cart->save();
 
-        return $order->id;
+        return $order;
     }
 }

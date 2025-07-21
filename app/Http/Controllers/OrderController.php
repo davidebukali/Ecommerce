@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Services\OrderService;
 use Illuminate\Support\Facades\Auth;
+use App\Events\OrderPlaced;
 
 
 class OrderController extends Controller
@@ -58,11 +59,13 @@ class OrderController extends Controller
             DB::beginTransaction();
             
             try {
-                $order_id = $this->orderService->createOrder($validatedData, $cart);
+                $order = $this->orderService->createOrder($validatedData, $cart);
+
+                OrderPlaced::dispatch($order);
 
                 DB::commit(); // All operations successful, commit the transaction
                 // Redirect to order confirmation page
-                return redirect()->route('checkout.confirmed', $order_id)
+                return redirect()->route('checkout.confirmed', $order->id)
                                 ->with('success', 'Your order has been placed successfully!');
             } catch (\Exception $e) {
                 DB::rollBack();
