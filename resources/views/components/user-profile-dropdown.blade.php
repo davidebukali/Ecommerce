@@ -18,6 +18,7 @@
         x-transition:leave="transition ease-in duration-75" x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
         class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50 user-dropdown-menu">
+        <a href="/orders" class="block px-4 py-2 hover:bg-gray-100 text-sm text-gray-700 dropdown-item">Orders</a>
         {{-- Logout Form (Standard Laravel Form) --}}
         <form method="POST" action="{{ route('logout') }}">
             @csrf {{-- CSRF token is essential for POST forms in Laravel --}}
@@ -27,8 +28,6 @@
             </button>
         </form>
         {{-- You can add more dropdown items here, e.g., Profile, Settings --}}
-        {{-- <a href="/profile"
-            class="block px-4 py-2 hover:bg-gray-100 text-sm text-gray-700 dropdown-item">Profile</a> --}}
         {{-- <a href="/settings"
             class="block px-4 py-2 hover:bg-gray-100 text-sm text-gray-700 dropdown-item">Settings</a> --}}
     </div>
