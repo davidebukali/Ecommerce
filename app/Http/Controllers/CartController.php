@@ -28,7 +28,8 @@ class CartController extends Controller
             return $item->total;
         });
         $order_number = (string) Str::uuid();
-        return view('cart.index', compact('cart', 'cartItems', 'subtotal', 'order_number'));
+        $transaction_id = (string) Str::uuid();
+        return view('cart.index', compact('cart', 'cartItems', 'subtotal', 'order_number', 'transaction_id'));
     }
 
     /**
@@ -41,7 +42,7 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
         ]);
-        
+
         $quantity = $request->input('quantity', 1);
         $price = $request->input('price', 1);
 
@@ -73,7 +74,6 @@ class CartController extends Controller
     {
         $quantity = $request->input('quantity', 1);
         $product_id = $request->input('product_id', 1);
-        $sessionId = session()->getId();
 
         $this->cartService->updateCartItem($product_id, $quantity);
         

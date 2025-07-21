@@ -20,7 +20,6 @@ class CartService
             );
         } else {
             //check if session is null
-            Log::info('Session ID: ' . $sessionId);
             if ($sessionId == null) {
                 // Generate a new session ID if it doesn't exist
                 $sessionId = (string) Str::uuid();

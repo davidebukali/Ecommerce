@@ -70,7 +70,7 @@
             <input type="hidden" name="total" value="{{ $subtotal + 500 }}" />
 
             <input type="hidden" name="payment_status" value="paid" />
-            <input type="hidden" name="transaction_id" value="123456" />
+            <input type="hidden" name="transaction_id" value="{{ $transaction_id }}" />
 
 
             <div class="summary-details">
