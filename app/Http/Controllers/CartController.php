@@ -36,6 +36,12 @@ class CartController extends Controller
      */
     public function add(Request $request, $productId)
     {
+        // Validate the request
+        $request->validate([
+            'quantity' => 'required|integer|min:1',
+            'price' => 'required|numeric|min:0',
+        ]);
+        
         $quantity = $request->input('quantity', 1);
         $price = $request->input('price', 1);
 
