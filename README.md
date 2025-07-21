@@ -9,7 +9,9 @@ This is an ecommerce clone of the popular shopping store. It's built with Larave
 - Checkout orders.
 - View history of orders
 - Livewire framework components to update cart item counts
-- Real time event broadcasting for order status updates
+- Redis queues to process order placed emails
+- Real time events with websockets for order status updates
+- Laravel Horizon to monitor Redis queues 
 - PHPUnit for feature tests
 - Laravel Fortify authentication with socialite (Google login)
 - Laravel Sanctum APIs
@@ -21,6 +23,7 @@ This is an ecommerce clone of the popular shopping store. It's built with Larave
 - Recommendations using AI
 - Make delivery fee configurable
 - Add maps for customer address
+- Add email settings
 - Improve UI/UX
 
 ## Contributing
