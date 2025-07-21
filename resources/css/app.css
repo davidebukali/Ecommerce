@@ -902,3 +902,416 @@ body {
         font-size: 1rem;
     }
 }
+
+/* --- Order Confirmed Page Styles --- */
+.order-confirmed-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px); /* Adjust based on your header/footer height */
+    padding: 40px 20px;
+    background-color: #f6f6f6; /* Light background for the whole page */
+}
+
+.confirmation-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08); /* More pronounced shadow for a floating card effect */
+    padding: 40px;
+    text-align: center; /* Center all content within the card */
+    max-width: 600px; /* Max width for readability */
+    width: 100%;
+}
+
+.confirmation-icon {
+    color: #4CAF50; /* Instacart Green for the checkmark */
+    margin-bottom: 25px;
+    display: inline-block; /* Ensures SVG behaves correctly */
+}
+.confirmation-icon svg {
+    width: 80px; /* Size of the SVG icon */
+    height: 80px;
+}
+
+
+.confirmation-title {
+    font-size: 2.8rem; /* Large and prominent title */
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.confirmation-message {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.order-summary-mini {
+    background-color: #f9f9f9; /* Slightly different background for the summary block */
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #eee;
+    text-align: left; /* Align text within summary to the left */
+}
+
+.summary-mini-heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.order-summary-mini p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #444;
+}
+
+.order-summary-mini p:last-child {
+    margin-bottom: 0;
+}
+
+.order-summary-mini strong {
+    color: #222;
+}
+
+.confirmation-actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    gap: 15px; /* Space between buttons */
+    margin-top: 30px;
+}
+
+@media (min-width: 576px) {
+    .confirmation-actions {
+        flex-direction: row; /* Buttons side-by-side on larger screens */
+        justify-content: center; /* Center the buttons */
+    }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+    .confirmation-card {
+        padding: 30px 20px; /* Reduce padding on smaller screens */
+    }
+
+    .confirmation-title {
+        font-size: 2.2rem;
+    }
+
+    .confirmation-message {
+        font-size: 1rem;
+    }
+
+    .order-summary-mini {
+        padding: 20px;
+    }
+
+    .summary-mini-heading {
+        font-size: 1.1rem;
+    }
+}
+
+/* --- Orders List Page Styles --- */
+.orders-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 25px; /* Space between order cards */
+}
+
+.order-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push footer to bottom */
+    border: 1px solid #eee;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.order-number {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.order-date {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.order-summary-items {
+    margin-bottom: 20px;
+}
+
+.order-item-summary {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.order-total {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #4CAF50; /* Instacart Green */
+}
+
+/* --- Pagination Styles --- */
+.pagination-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-links nav {
+    /* Styles for the Laravel pagination component if it's rendered as nav */
+    display: flex;
+    gap: 5px;
+}
+
+.pagination-links .pagination {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 5px;
+}
+
+.pagination-links .page-item {
+    display: inline-block;
+}
+
+.pagination-links .page-link {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #4CAF50; /* Instacart Green */
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pagination-links .page-link:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination-links .page-item.active .page-link {
+    background-color: #4CAF50; /* Active page background */
+    color: white;
+    border-color: #4CAF50;
+}
+
+.pagination-links .page-item.disabled .page-link {
+    color: #bbb;
+    pointer-events: none;
+    background-color: #f9f9f9;
+    border-color: #f0f0f0;
+}
+
+
+/* --- Order Details Page Styles --- */
+.back-link {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #1a73e8; /* Instacart Blue */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #0d47a1;
+}
+
+.order-details-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Stack on small screens */
+    gap: 25px; /* Space between detail cards */
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .order-details-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for larger screens */
+    }
+    .order-items-card { /* Spans two columns for items list */
+        grid-column: span 2;
+    }
+}
+
+.details-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 30px;
+    border: 1px solid #eee;
+}
+
+.card-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dotted #f5f5f5;
+    font-size: 1rem;
+    color: #555;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-row strong {
+    color: #222;
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    display: inline-block;
+}
+
+/* Specific status badge colors */
+.status-pending { background-color: #ffe0b2; color: #e65100; } /* Orange */
+.status-ordered { background-color: #c8e6c9; color: #2e7d32; } /* Green */
+.status-processing { background-color: #bbdefb; color: #1976d2; } /* Blue */
+.status-shipped { background-color: #b3e5fc; color: #0277bd; } /* Light blue */
+.status-delivered { background-color: #a5d6a7; color: #388e3c; } /* Darker Green */
+.status-cancelled { background-color: #ffcdd2; color: #d32f2f; } /* Red */
+.status-paid { background-color: #c8e6c9; color: #2e7d32; }
+.status-unpaid { background-color: #ffcdd2; color: #d32f2f; }
+
+/* Order Items specific styles */
+.items-list {
+    margin-top: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dotted #f5f5f5;
+}
+
+.item-row:last-child {
+    border-bottom: none;
+}
+
+.item-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-quantity {
+    font-weight: 600;
+    color: #4CAF50; /* Instacart Green */
+}
+
+.item-name {
+    font-size: 1rem;
+    color: #333;
+}
+
+.item-price {
+    font-weight: 600;
+    color: #222;
+}
+
+.order-totals-breakdown {
+    padding-top: 15px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 1rem;
+    color: #444;
+}
+
+.total-row.discount-row {
+    color: #d32f2f; /* Red for discount */
+}
+
+.total-row.grand-total {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #222;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.empty-state-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 40px;
+    text-align: center;
+    margin-top: 50px;
+    border: 1px dashed #e0e0e0;
+}
+
+.empty-message {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 25px;
+}

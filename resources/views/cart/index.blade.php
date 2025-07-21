@@ -59,50 +59,64 @@
     {{-- And then your summary and checkout section (only show if cart is not empty) --}}
     <div class="cart-summary-section">
         <h2 class="summary-title">Order Summary</h2>
-        <div class="summary-details">
-            <div class="summary-row">
-                <span>Subtotal:</span>
-                <span>${{ number_format($subtotal, 2) }}</span>
-            </div>
-            <div class="summary-row">
-                <span>Delivery Fee:</span>
-                <span>$500</span>
-            </div>
-            <div class="summary-row total">
-                <span>Total:</span>
-                <span>${{ number_format(($subtotal + 500), 2) }}</span>
-            </div>
-        </div>
 
-        <div class="customer-address-section">
-            <h2 class="section-title">Delivery Address</h2>
-            <textarea name="delivery_address" placeholder="Enter your full delivery address..." rows="4"
-                class="address-textarea">{{ old('delivery_address', $customerAddress ?? '') }}</textarea>
-            @error('delivery_address')
-            <div class="error-message">{{ $message }}</div>
-            @enderror
-        </div>
+        <form class="checkout-form" action="{{ route('checkout.process') }}" method="POST">
+            @csrf
+            <input type="hidden" name="cart_id" value="{{ $cart->id }}" />
+            <input type="hidden" name="order_number" value="{{ $order_number }}" />
+            <input type="hidden" name="subtotal" value="{{ $subtotal }}" />
+            <input type="hidden" name="delivery_fee" value="500" />
 
-        <div class="payment-options-section">
-            <h2 class="section-title">Payment Method</h2>
-            <div class="payment-option">
-                <input type="radio" id="payment_cod" name="payment_method" value="cod" checked>
-                <label for="payment_cod">Cash on Delivery (COD)</label>
-            </div>
-            <div class="payment-option">
-                <input type="radio" id="payment_mobile_money" name="payment_method" value="mobile_money">
-                <label for="payment_mobile_money">Mobile Money (e.g., M-Pesa, MTN MoMo)</label>
-            </div>
-            <div class="payment-option">
-                <input type="radio" id="payment_visa" name="payment_method" value="visa">
-                <label for="payment_visa">Credit/Debit Card (Visa/Mastercard)</label>
-            </div>
-            @error('payment_method')
-            <div class="error-message">{{ $message }}</div>
-            @enderror
-        </div>
+            <input type="hidden" name="total" value="{{ $subtotal + 500 }}" />
 
-        <button type="submit" class="checkout-button">Proceed to Checkout</button>
+            <input type="hidden" name="payment_status" value="paid" />
+            <input type="hidden" name="transaction_id" value="123456" />
+
+
+            <div class="summary-details">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span>${{ number_format($subtotal, 2) }}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Delivery Fee:</span>
+                    <span>$500</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span>${{ number_format(($subtotal + 500), 2) }}</span>
+                </div>
+            </div>
+
+            <div class="customer-address-section">
+                <h2 class="section-title">Delivery Address</h2>
+                <textarea name="delivery_address" placeholder="Enter your full delivery address..." rows="4"
+                    class="address-textarea">{{ old('delivery_address', $customerAddress ?? '') }}</textarea>
+                @error('delivery_address')
+                <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="payment-options-section">
+                <h2 class="section-title">Payment Method</h2>
+                <div class="payment-option">
+                    <input type="radio" id="payment_cod" name="payment_method" value="cod" checked>
+                    <label for="payment_cod">Cash on Delivery (COD)</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="payment_mobile_money" name="payment_method" value="mobile_money">
+                    <label for="payment_mobile_money">Mobile Money (e.g., M-Pesa, MTN MoMo)</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="payment_visa" name="payment_method" value="visa">
+                    <label for="payment_visa">Credit/Debit Card (Visa/Mastercard)</label>
+                </div>
+                @error('payment_method')
+                <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+            <button type="submit" class="checkout-button">Proceed to Checkout</button>
+        </form>
     </div>
     @endif
 </div>

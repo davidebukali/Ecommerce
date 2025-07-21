@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Services\CartService;
+use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
@@ -26,7 +27,8 @@ class CartController extends Controller
         $subtotal = $cartItems->sum(function ($item) {
             return $item->total;
         });
-        return view('cart.index', compact('cart', 'cartItems', 'subtotal'));
+        $order_number = (string) Str::uuid();
+        return view('cart.index', compact('cart', 'cartItems', 'subtotal', 'order_number'));
     }
 
     /**
