@@ -22,7 +22,7 @@ body {
 
 /* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
-.header, .footer { background: #fff; padding: 1rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.header, .footer { width: 100%; background: #fff; padding: 1rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
 /* Navbar */
 .navbar { display: flex; align-items: center; justify-content: space-between; }

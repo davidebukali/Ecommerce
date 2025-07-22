@@ -22,7 +22,7 @@
 
 <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex items-center lg:justify-center flex-col">
 
-    <header class="header container">
+    <header class="header">
         @include('components.navbar')
     </header>
     <main class="container">
