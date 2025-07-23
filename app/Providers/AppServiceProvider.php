@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Events\Login;
 use App\Listeners\MergeGuestCartOnLogin;
+use App\Models\Order;
+use App\Observers\OrderObserver;
+use Laravel\Telescope\TelescopeServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Order::observe(OrderObserver::class);
     }
 
     /**
