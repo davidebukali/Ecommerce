@@ -6,6 +6,9 @@
     <a href="{{ route('orders.index') }}" class="back-link">&larr; Back to all orders</a>
 
     <div class="order-details-grid">
+        <input type="hidden" id="orderId" value="{{ $order->id }}">
+
+        {{-- Order Items Card --}}
         {{-- Order Summary Card --}}
         <div class="details-card">
             <h2 class="card-title">Order Summary</h2>
