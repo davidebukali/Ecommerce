@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Order;
 use App\Events\OrderStatusUpdated;
 use Illuminate\Support\Facades\Log;
+use App\Notifications\OrderStatusNotification;
 
 class OrderObserver
 {
@@ -28,8 +29,13 @@ class OrderObserver
             // Log to the Laravel console
             Log::info("Order #{$order->id} status changed from '{$old}' to '{$new}'");
 
-            // Optionally dispatch an event
+            // Dispatch event
             OrderStatusUpdated::dispatch($order, $old, $new);
+
+            if ($order->user) {
+                // Create a notification
+                $order->user->notify(new OrderStatusNotification($order, $oldStatus, $newStatus));
+            }
         }
     }
 
