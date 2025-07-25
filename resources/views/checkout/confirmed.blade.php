@@ -33,4 +33,7 @@
         </div>
     </div>
 </div>
+<script>
+    window.userOrderIds = @json(session('order_ids', []));
+</script>
 @endsection

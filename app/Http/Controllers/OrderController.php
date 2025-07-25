@@ -60,13 +60,17 @@ class OrderController extends Controller
             
             try {
                 $order = $this->orderService->createOrder($validatedData, $cart);
+                $orderIds = $this->orderService->getUserOrderIds(auth()->id());
 
                 OrderPlaced::dispatch($order);
 
                 DB::commit(); // All operations successful, commit the transaction
                 // Redirect to order confirmation page
                 return redirect()->route('checkout.confirmed', $order->id)
-                                ->with('success', 'Your order has been placed successfully!');
+                                ->with([
+                                    'success' => 'Your order has been placed successfully!',
+                                    'order_ids' => $orderIds,
+                                ]);
             } catch (\Exception $e) {
                 DB::rollBack();
                 Log::error('Checkout failed for cart ID ' . $validatedData['cart_id'] . ': ' . $e->getMessage(), ['exception' => $e]);
