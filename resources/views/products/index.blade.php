@@ -14,4 +14,7 @@
     @endforeach
     @endif
 </div>
+<script>
+    window.userOrderIds = @json($orderIds);
+</script>
 @endsection

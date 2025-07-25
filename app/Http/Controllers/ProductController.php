@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ProductService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -18,8 +20,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->productService->getProducts();   
-        return view('products.index', compact('products'));
+        $products = $this->productService->getProducts();
+        $orderIds = Auth::user()->orders()->pluck('id')->toArray();
+        return view('products.index', compact(['products', 'orderIds']));
     }
 
     /**
