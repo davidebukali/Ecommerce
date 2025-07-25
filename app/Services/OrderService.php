@@ -30,4 +30,9 @@ class OrderService
 
         return $order;
     }
+
+    public function getUserOrderIds($userId)
+    {
+        return Order::where('user_id', $userId)->pluck('id')->toArray();
+    }
 }
