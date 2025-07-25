@@ -20,8 +20,13 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $orderIds = [];
         $products = $this->productService->getProducts();
-        $orderIds = Auth::user()->orders()->pluck('id')->toArray();
+        
+        // Check if user is authenticated and get their order IDs
+        if (Auth::check()) {    
+            $orderIds = Auth::user()->orders()->pluck('id')->toArray();
+        }
         return view('products.index', compact(['products', 'orderIds']));
     }
 
