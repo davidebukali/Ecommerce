@@ -3,16 +3,20 @@
 ## Instacart Clone
 
 This is an ecommerce clone of the popular shopping store. It's built with Laravel 12x and includes the following features.
-- Filament Admin backend to create products with multiple images
 - Product listing and details
 - Add and remove products from cart 
 - Checkout orders.
 - View history of orders
-- Livewire framework components to update cart item counts
+- Authentication
 - Redis queues to process order placed emails
-- Real time events with websockets for order status updates
-- Laravel Horizon to monitor Redis queues 
+- Real time notifications with pusher websockets for order status updates. Follow Laravel docs to setup.
 - PHPUnit for feature tests
+
+
+## Packages
+- [Filament admin](https://filamentphp.com/) backend to create products with multiple images. Access from ```localhost:8000/admin
+- [Livewire framework](https://livewire.laravel.com/) components to update cart item counts and order status notifications
+- Laravel Horizon to monitor Redis queues.  Start with ```php artisan horizon 
 - Laravel Fortify authentication with socialite (Google login)
 - Laravel Sanctum APIs
 
