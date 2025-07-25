@@ -43,10 +43,10 @@ class OrderStatusNotification extends Notification implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
-        // Ensure you have a route named 'orders.show' for the link
+        // Ensure you have a route named 'orders.details' for the link
         $orderUrl = '#'; // Default fallback
         try {
-            $orderUrl = route('orders.show', $this->order->id);
+            $orderUrl = 'orders/' . $this->order->id; // Adjust this to your actual route
         } catch (\Exception $e) {
             // Route not found, handle gracefully
         }
