@@ -6,6 +6,9 @@
 
     <!-- Right: Cart and User -->
     <div class="flex">
+        @auth
+        <livewire:order-notifications />
+        @endauth
         <a href="{{ route('cart.index') }}" class="relative text-gray-700 hover:text-green-600 mr-3">
             🛒
             <livewire:cart-counter />
