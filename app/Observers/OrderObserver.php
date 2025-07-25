@@ -29,13 +29,13 @@ class OrderObserver
             // Log to the Laravel console
             Log::info("Order #{$order->id} status changed from '{$old}' to '{$new}'");
 
-            // Dispatch event
-            OrderStatusUpdated::dispatch($order, $old, $new);
-
             if ($order->user) {
                 // Create a notification
-                $order->user->notify(new OrderStatusNotification($order, $oldStatus, $newStatus));
+                $order->user->notify(new OrderStatusNotification($order, $old, $new));
             }
+
+            // Dispatch event
+            OrderStatusUpdated::dispatch($order, $old, $new);
         }
     }
 
