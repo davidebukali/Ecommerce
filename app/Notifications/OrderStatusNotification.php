@@ -46,7 +46,7 @@ class OrderStatusNotification extends Notification implements ShouldQueue
         // Ensure you have a route named 'orders.details' for the link
         $orderUrl = '#'; // Default fallback
         try {
-            $orderUrl = 'orders/' . $this->order->id; // Adjust this to your actual route
+            $orderUrl = route('orders.details', $this->order->id); // Adjust this to your actual route
         } catch (\Exception $e) {
             // Route not found, handle gracefully
         }
