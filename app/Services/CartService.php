@@ -6,55 +6,21 @@ use App\Models\Cart;
 use App\Models\CartItems;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use App\Repositories\CartRepository;
+use App\Services\AuthService;
 
 class CartService
-{
-    public function getOrCreateCart()
+{    
+    protected $cartRepository;
+
+    public function __construct(CartRepository $cartRepository)
     {
-        $sessionId = session('cart_id');
-        // Check if the user is authenticated
-        if (auth()->check()) {
-            $cart = Cart::firstOrCreate(
-                ['user_id' => auth()->id(), 'status' => 'active'],
-                ['status' => 'active']
-            );
-        } else {
-            //check if session is null
-            if ($sessionId == null) {
-                // Generate a new session ID if it doesn't exist
-                $sessionId = (string) Str::uuid();
-                session(['cart_id' => $sessionId]);
-                $sessionId = session('cart_id');
-            }
-
-            // For guests, use the session ID to identify the cart
-            $cart = Cart::firstOrCreate(
-                ['session_id' => $sessionId, 'status' => 'active'],
-                ['status' => 'active']
-            );
-        }
-
-        return $cart;
-    }
-
-    public function addCartItem($price, $quantity, $productId)
-    {
-        // Get or create the cart
-        $cart = $this->getOrCreateCart();
-
-        Log::info('Found a cart to add items: ' . $cart);
-
-        // Add or update the product in the cart
-        $cartItem = $cart->items()->firstOrNew(['product_id' => $productId]);
-        $cartItem->quantity = $quantity;
-        $cartItem->price = $price;
-        $cartItem->total = $cartItem->quantity * $cartItem->price;
-        $cartItem->save();
+        $this->cartRepository = $cartRepository;
     }
 
     public function updateCartItem($productId, $quantity)
     {
-        $cart = $this->getOrCreateCart();
+        $cart = $this->cartRepository->getOrCreateCart();
         $cartItem = $cart->items()->where('product_id', $productId)->first();
 
         if ($cartItem) {
@@ -72,5 +38,10 @@ class CartService
         if ($cartItem) {
             $cartItem->delete();
         }
+    }
+
+    public function addProductToCart($price, $quantity, $productId)
+    {
+        $this->cartRepository->addItem($price, $quantity, $productId);
     }
 }

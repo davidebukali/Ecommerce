@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Services\CartService;
+use App\Repositories\CartRepository;
 use Illuminate\Support\Str;
+use App\Http\Requests\AddProductToCartRequest;
 
 class CartController extends Controller
 {
     protected $cartService;
+    protected $cartRepository;
 
-    public function __construct(CartService $cartService)
+    public function __construct(CartService $cartService, CartRepository $cartRepository)
     {
         $this->cartService = $cartService;
+        $this->cartRepository = $cartRepository;
     }
 
     /**
@@ -21,7 +25,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = $this->cartService->getOrCreateCart();
+        $cart = $this->cartRepository->getOrCreateCart();
         $cartItems = $cart->items()->with('product')->get();
         // sum the total price of all items in the cart
         $subtotal = $cartItems->sum(function ($item) {
@@ -35,20 +39,13 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function add(Request $request, $productId)
+    public function add(AddProductToCartRequest $request, $productId)
     {
         // Validate the request
-        $request->validate([
-            'quantity' => 'required|integer|min:1',
-            'price' => 'required|numeric|min:0',
-        ]);
+        $validatedData = $request->validated();
+        $this->cartService->addProductToCart($validatedData['price'], $validatedData['quantity'], $productId);
 
-        $quantity = $request->input('quantity', 1);
-        $price = $request->input('price', 1);
-
-        $this->cartService->addCartItem($price, $quantity, $productId);
-        
-        return redirect()->back()->with('success', 'Product added to cart!')->with('dispatch', 'cart-updated');;
+        return redirect()->back()->with('success', 'Product added to cart!')->with('dispatch', 'cart-updated');
     }
 
     /**
